@@ -51,6 +51,7 @@ class Login extends Component {
     const form = this.props.form;
     form.validateFields((err, values) => {
       if (!err) {
+        values.password = btoa(values.password); 
         if (this.props.isLDAP && this.state.loginType === 'ldap') {
           this.props.loginLdapActions(values).then(res => {
             if (res.payload.data.errcode == 0) {

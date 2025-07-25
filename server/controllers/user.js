@@ -32,7 +32,7 @@ class userController extends baseController {
     //登录
     const userInst = yapi.getInst(userModel) //创建user实体
     const email = ctx.request.body.email
-    const password = ctx.request.body.password
+    const password = Buffer.from(ctx.request.body.password, 'base64').toString('utf8')
 
     if (!email) {
       return (ctx.body = yapi.commons.resReturn(null, 400, 'email不能为空'))
